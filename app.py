@@ -65,7 +65,7 @@ def calculate_windows():
         data['regions'].append({
             'name': region,
             'urgency': urgency,
-            'hours_until_stating': f'{hours_until_stating:.1f}',
+            'hours_until_stating': float(f'{hours_until_stating:.1f}'),
             'utc_time': {
                 'state': state_time.astimezone(ZoneInfo('Etc/UTC')).strftime(config['time_format_utc']),
                 'start': start_time.astimezone(ZoneInfo('Etc/UTC')).strftime(config['time_format_utc']),
