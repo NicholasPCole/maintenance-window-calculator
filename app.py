@@ -48,13 +48,15 @@ def calculate_windows():
         # time) we are.
 
         state_time = start_time - timedelta(weeks=1)
+        hours_until_stating = (state_time - local_time_now) / timedelta(hours=1)
+
         end_time = start_time + timedelta(hours=8)
 
-        if state_time - local_time_now < timedelta(hours=1):
+        if hours_until_stating < 1:
             urgency = 'now'
-        elif state_time - local_time_now < timedelta(hours=4):
+        elif hours_until_stating < 4:
             urgency = 'sooner'
-        elif state_time - local_time_now < timedelta(hours=8):
+        elif hours_until_stating < 8:
             urgency = 'soon'
         else:
             urgency = 'none'
@@ -64,6 +66,7 @@ def calculate_windows():
         this_region = {
             'name': region,
             'urgency': urgency,
+            'hours_until_stating': f'{hours_until_stating:.1f}',
             'utc_time': {
                 'state': state_time.astimezone(ZoneInfo('Etc/UTC')).strftime(config['time_format_utc']),
                 'start': start_time.astimezone(ZoneInfo('Etc/UTC')).strftime(config['time_format_utc']),

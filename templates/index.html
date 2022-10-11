@@ -19,6 +19,12 @@
       <th>{{ region['name']|upper }}</th>
       {% endfor -%}
     </tr>
+    <tr>
+      <th colspan="2">Hours until stating</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['hours_until_stating'] }}
+      {% endfor -%}
+    </tr>
     <tr class="utc">
       <th rowspan="3">UTC Time</th>
       <th>State</th>
