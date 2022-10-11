@@ -2,9 +2,10 @@ spec:
   name: maintenance-window-calculator
   services:
     - name: web
-      git:
-        repo_clone_url: https://github.com/NicholasPCole/maintenance-window-calculator.git
+      github:
+        repo: NicholasPCole/maintenance-window-calculator
         branch: master
+        deploy_on_push: true
   alerts:
     - rule: DEPLOYMENT_FAILED
     - rule: DEPLOYMENT_LIVE
