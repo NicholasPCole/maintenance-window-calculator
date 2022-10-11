@@ -11,8 +11,7 @@
     <li>{{ data['utc_time_now'] }} UTC</li>
     <li>{{ data['eastern_time_now'] }}</li>
   </ul>
-  <p>Below are the next available maintenance windows for each location.</p>
-  <p>Highlights indicate a deadline approaching in the next few hours.</p>
+  <p>Below are the next available maintenance windows for each location:</p>
   <table>
     <tr>
       <th colspan="2">Times</th>
@@ -24,7 +23,7 @@
       <th rowspan="3">UTC Time</th>
       <th>State</th>
       {% for region in data['regions'] -%}
-      <td{% if region['urgency'] != 'none' %} class="{{ region['urgency'] }}"{% endif %}>{{ region['utc_time']['state'] }}</td>
+      <td{% if region['urgency'] != 'none' %} class="urgency-{{ region['urgency'] }}"{% endif %}>{{ region['utc_time']['state'] }}</td>
       {% endfor -%}
     </tr>
     <tr>
@@ -63,6 +62,21 @@
       {% for region in data['regions'] -%}
       <td>{{ region['local_time']['end'] }}</td>
       {% endfor -%}
+    </tr>
+  </table>
+  <p>Highlights indicate upcoming deadlines for notifications:</p>
+  <table>
+    <tr>
+      <th>Time range</th>
+    </tr>
+    <tr>
+      <td class="urgency-soon">Next eight hours</td>
+    </tr>
+    <tr>
+      <td class="urgency-sooner">Next four hours</td>
+    </tr>
+    <tr>
+      <td class="urgency-now">Next one hour</td>
     </tr>
   </table>
 </body>

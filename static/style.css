@@ -3,11 +3,18 @@ table, td, th, tr {
     border-collapse: separate;
 }
 
-td.soon {
-    color: orange;
+td.urgency-soon {
+    border-color: orange;
 }
 
-td.sooner {
+td.urgency-sooner {
+    border-color: red;
+    border-width: 2px;
+}
+
+td.urgency-now {
+    border-color: red;
+    border-width: 2px;
     color: red;
     font-weight: bold;
 }

@@ -50,7 +50,9 @@ def calculate_windows():
         state_time = start_time - timedelta(weeks=1)
         end_time = start_time + timedelta(hours=8)
 
-        if state_time - local_time_now < timedelta(hours=4):
+        if state_time - local_time_now < timedelta(hours=1):
+            urgency = 'now'
+        elif state_time - local_time_now < timedelta(hours=4):
             urgency = 'sooner'
         elif state_time - local_time_now < timedelta(hours=8):
             urgency = 'soon'
