@@ -44,13 +44,10 @@ def calculate_windows():
         while start_time.weekday() in config['weekdays_to_exclude']:
             start_time += timedelta(days=1)
 
-        # Calculate other times, as well as how close to the deadline (state
-        # time) we are.
+        # Calculate other times such as the state time and end time.
 
         state_time = start_time - timedelta(weeks=1)
         hours_until_stating = (state_time - local_time_now) / timedelta(hours=1)
-
-        end_time = start_time + timedelta(hours=8)
 
         if hours_until_stating < 1:
             urgency = 'now'
@@ -61,9 +58,11 @@ def calculate_windows():
         else:
             urgency = 'none'
 
-        # Print the results.
+        end_time = start_time + timedelta(hours=8)
 
-        this_region = {
+        # Assemble the data.
+
+        data['regions'].append({
             'name': region,
             'urgency': urgency,
             'hours_until_stating': f'{hours_until_stating:.1f}',
@@ -78,8 +77,6 @@ def calculate_windows():
                 'start': start_time.strftime(config['time_format']),
                 'end': end_time.strftime(config['time_format'])
             }
-        }
-
-        data['regions'].append(this_region)
+        })
 
     return data
