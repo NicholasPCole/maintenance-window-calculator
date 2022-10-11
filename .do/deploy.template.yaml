@@ -6,6 +6,10 @@ spec:
         repo: NicholasPCole/maintenance-window-calculator
         branch: master
         deploy_on_push: true
+      envs:
+        - key: PROXY_COUNT
+          scope: RUN_TIME
+          value: "2"
   alerts:
     - rule: DEPLOYMENT_FAILED
     - rule: DEPLOYMENT_LIVE
