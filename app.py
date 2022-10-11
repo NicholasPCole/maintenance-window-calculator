@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 from datetime import datetime, timedelta, timezone
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
+import json
 from os import environ
 from werkzeug.middleware.proxy_fix import ProxyFix
 from zoneinfo import ZoneInfo  # Requires Python 3.9
@@ -24,7 +25,10 @@ with open('config.yaml', 'r') as config_file:
 
 @app.route("/")
 def show_index_page():
-    return render_template("index.html", data=calculate_windows())
+    if "HTTPie" in request.headers['User-Agent'] or "curl" in request.headers['User-Agent']:
+        return Response(json.dumps(calculate_windows()), mimetype="application/json")
+    else:
+        return render_template("index.html", data=calculate_windows())
 
 
 def calculate_windows():
