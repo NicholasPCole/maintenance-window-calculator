@@ -1,0 +1,10 @@
+spec:
+  name: maintenance-window-calculator
+  services:
+    - name: web
+      git:
+        repo_clone_url: https://github.com/NicholasPCole/maintenance-window-calculator.git
+        branch: master
+  alerts:
+    - rule: DEPLOYMENT_FAILED
+    - rule: DEPLOYMENT_LIVE

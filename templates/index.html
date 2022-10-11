@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Maintenance Window Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Maintenance Window Calculator</h1>
+  <p>Current time:</p>
+  <ul>
+    <li>{{ data['utc_time_now'] }} UTC</li>
+    <li>{{ data['eastern_time_now'] }}</li>
+  </ul>
+  <p>Below are the next available maintenance windows for each location.</p>
+  <p>Highlights indicate a deadline approaching in the next few hours.</p>
+  <table>
+    <tr>
+      <th colspan="2">Times</th>
+      {% for region in data['regions'] -%}
+      <th>{{ region['name']|upper }}</th>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th rowspan="3">UTC Time</th>
+      <th>State</th>
+      {% for region in data['regions'] -%}
+      <td{% if region['urgency'] != 'none' %} class="{{ region['urgency'] }}"{% endif %}>{{ region['utc_time']['state'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th>Start</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['utc_time']['start'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th>End</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['utc_time']['end'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th rowspan="4">Local Time</th>
+      <th>Now</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['local_time']['now'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th>State</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['local_time']['state'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th>Start</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['local_time']['start'] }}</td>
+      {% endfor -%}
+    </tr>
+    <tr>
+      <th>End</th>
+      {% for region in data['regions'] -%}
+      <td>{{ region['local_time']['end'] }}</td>
+      {% endfor -%}
+    </tr>
+  </table>
+</body>
+</html>

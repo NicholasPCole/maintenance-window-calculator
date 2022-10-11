@@ -1,0 +1,12 @@
+time_format: '%Y-%m-%d %H:%M %Z'
+time_format_utc: '%Y-%m-%d %H:%M'
+time_zones:
+  sfo: America/Los_Angeles
+  nyc: America/New_York
+  tor: America/New_York
+  lon: Europe/London
+  ams: Europe/Amsterdam
+  fra: Europe/Berlin
+  blr: Asia/Kolkata
+  sgp: Asia/Singapore
+weekdays_to_exclude: [5, 6]
