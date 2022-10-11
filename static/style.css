@@ -18,3 +18,7 @@ td.urgency-now {
     color: red;
     font-weight: bold;
 }
+
+tr.utc {
+    background-color: rgba(0, 128, 255, 0.15);
+}

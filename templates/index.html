@@ -19,20 +19,20 @@
       <th>{{ region['name']|upper }}</th>
       {% endfor -%}
     </tr>
-    <tr>
+    <tr class="utc">
       <th rowspan="3">UTC Time</th>
       <th>State</th>
       {% for region in data['regions'] -%}
       <td{% if region['urgency'] != 'none' %} class="urgency-{{ region['urgency'] }}"{% endif %}>{{ region['utc_time']['state'] }}</td>
       {% endfor -%}
     </tr>
-    <tr>
+    <tr class="utc">
       <th>Start</th>
       {% for region in data['regions'] -%}
       <td>{{ region['utc_time']['start'] }}</td>
       {% endfor -%}
     </tr>
-    <tr>
+    <tr class="utc">
       <th>End</th>
       {% for region in data['regions'] -%}
       <td>{{ region['utc_time']['end'] }}</td>
