@@ -2,11 +2,21 @@
 
 from datetime import datetime, timedelta, timezone
 from flask import Flask, render_template, request
+from os import environ
+from werkzeug.middleware.proxy_fix import ProxyFix
 from zoneinfo import ZoneInfo  # Requires Python 3.9
 import yaml
 
 
 app = Flask(__name__)
+
+if 'PROXY_COUNT' in environ and int(environ['PROXY_COUNT']) > 0:
+    app.wsgi_app = ProxyFix(app.wsgi_app,
+                            x_for=int(environ['PROXY_COUNT']),
+                            x_proto=int(environ['PROXY_COUNT']),
+                            x_host=int(environ['PROXY_COUNT']),
+                            x_prefix=int(environ['PROXY_COUNT'])
+    )
 
 with open('config.yaml', 'r') as config_file:
     config = yaml.safe_load(config_file)
