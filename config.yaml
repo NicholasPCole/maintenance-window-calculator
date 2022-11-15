@@ -9,4 +9,5 @@ time_zones:
   fra: Europe/Berlin
   blr: Asia/Kolkata
   sgp: Asia/Singapore
+  syd: Australia/Sydney
 weekdays_to_exclude: [5, 6]
